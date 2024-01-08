@@ -27,7 +27,7 @@ body {
       rgba(126, 213, 111, 0.8),
       rgba(40, 480, 131, 0.8)
     ),
-    url("/img/hero.jpg");
+    url("../img/hero.jpg");
 
   background-size: cover;
   position: relative;
@@ -49,12 +49,15 @@ body {
   position: absolute;
   top: 40%;
   left: 50%;
+  text-align: center;
   transform: translate(-50%, -50%);
   /* background-color: red; */
 }
 
 .heading_primary {
   color: #fff;
+  margin-bottom: 60px;
+  backface-visibility: hidden;
   text-transform: uppercase;
 }
 
@@ -63,6 +66,11 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+  animation-name: move_in_left;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* animation-iteration-count: 3; */
+  /* animation-delay: 3s; */
 }
 
 .heading_primary_sub {
@@ -70,4 +78,100 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+  animation: move_in_right 1s ease-out;
 }
+
+@keyframes move_in_left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes move_in_right {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes move_in_button {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:link,
+btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  border-radius: 100px;
+  display: inline-block;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn_white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn_white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: move_in_button 0.5s ease-out 0.75;
+  animation-fill-mode: backwards;
+}
+
+
